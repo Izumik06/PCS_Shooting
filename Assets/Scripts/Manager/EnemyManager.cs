@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager instance = null;
     private void Awake()
     {
-        if(instance = null)
+        if(instance == null)
         {
             instance = this;
         }

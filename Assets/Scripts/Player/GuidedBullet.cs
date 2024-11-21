@@ -5,11 +5,29 @@ using UnityEngine;
 
 public class GuidedBullet : PlayerBullet
 {
-    Transform target;
+    Rigidbody2D rb;
+    public Transform target;
+    public float rotateSpeed;
+    public float speed;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        if(EnemyManager.Instance.enemys.Count >= 0)
+        {
+            List<Enemy> targets = EnemyManager.Instance.enemys.OrderByDescending(_ => Vector3.Distance(_.transform.position, transform.position)).ToList();
+            target = targets[targets.Count - 1].transform;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        target = EnemyManager.Instance.enemys[0].transform;
+        if(target != null)
+        {
+            transform.up = 
+                Vector3.MoveTowards(transform.up, (target.transform.position - transform.position).normalized,
+                rotateSpeed * Time.deltaTime);
+        }
+        rb.velocity = transform.up * speed;
     }
 }
