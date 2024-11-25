@@ -95,8 +95,8 @@ public class Player : MonoBehaviour
                     GameObject guidedBulletB = Instantiate(guidedBulletPrefab);
                     guidedBulletA.transform.position = transform.position;
                     guidedBulletB.transform.position = transform.position;
-                    guidedBulletA.transform.Rotate(Vector3.forward * -50);
-                    guidedBulletB.transform.Rotate(Vector3.forward * 50);
+                    guidedBulletA.transform.Rotate(Vector3.forward * -70);
+                    guidedBulletB.transform.Rotate(Vector3.forward * 70);
                     
                     break;
                 }

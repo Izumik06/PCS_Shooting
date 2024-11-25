@@ -13,7 +13,7 @@ public class GuidedBullet : PlayerBullet
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if(EnemyManager.Instance.enemys.Count >= 0)
+        if(EnemyManager.Instance.enemys.Count > 0)
         {
             List<Enemy> targets = EnemyManager.Instance.enemys.OrderByDescending(_ => Vector3.Distance(_.transform.position, transform.position)).ToList();
             target = targets[targets.Count - 1].transform;
