@@ -28,7 +28,7 @@ public class EnemyA : Enemy
             firepoint.Rotate(Vector3.forward * -15);
             for(int i = 0; i < 3; i++)
             {
-                GameObject bullet = Instantiate(enemyBulletPrefab);
+                GameObject bullet = ObjectPool.Instance.GetObject(ObjectType.EnemyBullet);
                 bullet.transform.position = firepoint.transform.position;
                 bullet.transform.rotation = firepoint.transform.rotation;
                 bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * 5, ForceMode2D.Impulse);

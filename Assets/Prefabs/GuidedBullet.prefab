@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd303ee83690f14984b745e3992d816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletType: 2
   atk: 0
   target: {fileID: 0}
   rotateSpeed: 4.5
