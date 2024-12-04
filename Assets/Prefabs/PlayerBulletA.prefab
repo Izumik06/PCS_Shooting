@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1944757402385640632}
   m_Layer: 0
   m_Name: PlayerBulletA
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff86fdf9e8055a4f9507fcd1aa6a545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletType: 0
   atk: 1

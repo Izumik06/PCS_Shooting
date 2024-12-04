@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4822712887470277251}
   m_Layer: 0
   m_Name: Enemy A
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdbec99082557e439367b6b1d5cf62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletPrefab: {fileID: 6119614128562238792, guid: 426b068731d2d884cabd2997168085d0, type: 3}
+  enemyType: 4
   Hp: 0
   speed: 3
   firepoint: {fileID: 6481236350030701304}

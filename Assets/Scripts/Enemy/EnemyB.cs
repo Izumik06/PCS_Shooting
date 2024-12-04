@@ -8,6 +8,7 @@ public class EnemyB : Enemy
     Vector3 dir = Vector3.down;
     private void Start()
     {
+        speed = 3;
         StartCoroutine(Shoot());
     }
     private void Update()

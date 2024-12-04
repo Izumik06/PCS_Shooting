@@ -41,9 +41,6 @@ public class ObjectPool : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    private void Start()
-    {
         Initialize();
     }
     private void Initialize()
@@ -77,6 +74,7 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = Instantiate(enemyA_Prefab);
             obj.SetActive(false);
             enemyAs.Enqueue(obj);
+            Debug.Log(enemyAs.Count);
         }
         for (int i = 0; i < enemyB_Count; i++)
         {
