@@ -101,6 +101,10 @@ MonoBehaviour:
   enemyType: 5
   Hp: 0
   speed: 3
+  dropItems:
+  - itemType: 8
+    count: 3
+    probability: 100
   rotateSpeed: 0.05
 --- !u!60 &1313111435511467775
 PolygonCollider2D:

@@ -6,10 +6,15 @@ public class Border : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.CompareTag("Enemy"))
+        switch (collision.tag)
         {
-            Bullet bullet = collision.GetComponent<Bullet>();
-            ObjectPool.Instance.DestroyObject(bullet.gameObject, bullet.bulletType);
+            case "PlayerBullet":
+            case "EnemyBullet":
+                ObjectPool.Instance.DestroyObject(collision.gameObject, collision.GetComponent<Bullet>().bulletType);
+                break;
+            case "Item":
+                ObjectPool.Instance.DestroyObject(collision.gameObject, collision.GetComponent<Item>().itemType);
+                break;
         }
     }
 }
