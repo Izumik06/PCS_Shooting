@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
     public float speed;
 
     public int hp;
@@ -12,17 +15,23 @@ public class Player : MonoBehaviour
     bool canShoot = true;
     public int power = 1;
     public float shootDelay;
+
+    public bool canHit = true;
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Shoot();
-        Move();
+        if (!GameManager.Instance.isEndGame)
+        {
+            Shoot();
+            Move();
+        }
     }
     void Move()
     {
@@ -102,6 +111,35 @@ public class Player : MonoBehaviour
                     break;
                 }
         }
+    }
+    public void OnDamage()
+    {
+        if (!canHit) {  return; }
+        hp--;
+        if(hp > 0)
+        {
+            StartCoroutine(hitEffect());
+            if (power > 1)
+            {
+                power--;
+            }
+        }
+        else
+        {
+            animator.SetTrigger("Explosion");
+        }
+    }
+    public void EndGame()
+    {
+        GameManager.Instance.EndGame();
+    }
+    IEnumerator hitEffect()
+    {
+        canHit = false;
+        spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(1f);
+        canHit = true;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
     IEnumerator ShootDelay()
     {

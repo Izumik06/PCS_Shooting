@@ -11,6 +11,8 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] GameObject playerBulletB_Prefab;
     [SerializeField] GameObject guidedBullet_Prefab;
     [SerializeField] GameObject enemyBullet_Prefab;
+    [SerializeField] GameObject bossBulletA_Prefab;
+    [SerializeField] GameObject bossBulletB_Prefab;
     [SerializeField] GameObject enemyA_Prefab;
     [SerializeField] GameObject enemyB_Prefab;
     [SerializeField] GameObject enemyC_Prefab;
@@ -22,6 +24,8 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] int playerBulletB_Count;
     [SerializeField] int guidedBullet_Count;
     [SerializeField] int enemyBullet_Count;
+    [SerializeField] int bossBulletA_Count;
+    [SerializeField] int bossBulletB_Count;
     [SerializeField] int enemyA_Count;
     [SerializeField] int enemyB_Count;
     [SerializeField] int enemyC_Count;
@@ -33,6 +37,8 @@ public class ObjectPool : MonoBehaviour
     private Queue<GameObject> playerBulletBs = new Queue<GameObject>();
     private Queue<GameObject> guidedBullets = new Queue<GameObject>();
     private Queue<GameObject> enemyBullets = new Queue<GameObject>();
+    private Queue<GameObject> bossBulletAs = new Queue<GameObject>();
+    private Queue<GameObject> bossBulletBs = new Queue<GameObject>();
     private Queue<GameObject> enemyAs = new Queue<GameObject>();
     private Queue<GameObject> enemyBs = new Queue<GameObject>();
     private Queue<GameObject> enemyCs = new Queue<GameObject>();
@@ -77,6 +83,18 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = Instantiate(enemyBullet_Prefab);
             obj.SetActive(false);
             enemyBullets.Enqueue(obj);
+        }
+        for (int i = 0; i < bossBulletA_Count; i++)
+        {
+            GameObject obj = Instantiate(bossBulletA_Prefab);
+            obj.SetActive(false);
+            bossBulletAs.Enqueue(obj);
+        }
+        for (int i = 0; i < bossBulletB_Count; i++)
+        {
+            GameObject obj = Instantiate(bossBulletB_Prefab);
+            obj.SetActive(false);
+            bossBulletBs.Enqueue(obj);
         }
         for (int i = 0; i < enemyA_Count; i++)
         {
@@ -133,6 +151,12 @@ public class ObjectPool : MonoBehaviour
             case ObjectType.EnemyBullet:
                 obj = enemyBullets.Dequeue();
                 break;
+            case ObjectType.BossBulletA:
+                obj = bossBulletAs.Dequeue();
+                break;
+            case ObjectType.BossBulletB:
+                obj = bossBulletBs.Dequeue();
+                break;
             case ObjectType.EnemyA:
                 obj = enemyAs.Dequeue();
                 break;
@@ -172,6 +196,12 @@ public class ObjectPool : MonoBehaviour
             case ObjectType.EnemyBullet:
                 enemyBullets.Enqueue(obj);
                 break;
+            case ObjectType.BossBulletA:
+                bossBulletAs.Enqueue(obj);
+                break;
+            case ObjectType.BossBulletB:
+                bossBulletBs.Enqueue(obj);
+                break;
             case ObjectType.EnemyA:
                 enemyAs.Enqueue(obj);
                 break;
@@ -207,5 +237,5 @@ public class ObjectPool : MonoBehaviour
 }
 public enum ObjectType
 {
-    PlayerBulletA, PlayerBulletB, GuidedBullet, EnemyBullet, EnemyA, EnemyB, EnemyC, HpItem, PowerItem, ScoreItem
+    PlayerBulletA, PlayerBulletB, GuidedBullet, EnemyBullet, EnemyA, EnemyB, EnemyC, HpItem, PowerItem, ScoreItem, BossBulletA, BossBulletB, 
 }
