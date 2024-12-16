@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -18,6 +19,7 @@ public class Boss : Enemy
     {
         Move();
         SpellChange();
+        currentSpellTime += Time.deltaTime;
     }
     void SpellChange()
     {
@@ -27,18 +29,23 @@ public class Boss : Enemy
         {
             StopCoroutine(currentSpell);
         }
+
+        if(spellIndexes.Count <= 0)
+        {
+            GameManager.Instance.EndGame();
+        }
+
         currentSpellTime = 0;
         Hp = 100;
 
-        //int spellIndex = spellIndexes[Random.Range(0, spellIndexes.Count)];
-        int spellIndex = 2;
+        int spellIndex = spellIndexes[Random.Range(0, spellIndexes.Count)];
         spellIndexes.Remove(spellIndex);
         currentSpell = StartCoroutine("Spell" + spellIndex);
     }
     IEnumerator Spell1()
     {
-        //while (true)
-        //{
+        while (true)
+        {
             int count = 20;
             for(int i = 0; i < count; i++)
             {
@@ -50,7 +57,7 @@ public class Boss : Enemy
             }
             bulletPoints[0].Rotate(Vector3.forward * ((360 / count) / 3));
             yield return new WaitForSeconds(0.75f);
-        //}
+        }
     }
     IEnumerator Spell2()
     {
